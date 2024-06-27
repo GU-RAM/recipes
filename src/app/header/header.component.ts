@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
+  onSelect(page: string) {
+    if (page === 'recipes') {
+  } else if (page === 'shopping-list') {
+  }
+}
 }
