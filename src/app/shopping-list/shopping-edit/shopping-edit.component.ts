@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Ingredient } from '../inredient.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -13,22 +14,18 @@ import {
   styleUrls: ['./shopping-edit.component.scss'],
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('nameInput') nameInput: ElementRef | undefined;
-  @ViewChild('amountInput') amountInput: ElementRef | undefined;
-  @Output() newIngredient = new EventEmitter<any>();
+  @ViewChild('nameInput') nameInputRef: ElementRef | undefined;
+  @ViewChild('amountInput') amountInputRef: ElementRef | undefined;
+  @Output() newIngredient = new EventEmitter<Ingredient>();
 
-  addIngredient() {
-    const name = this.nameInput?.nativeElement.value;
-    const amount = parseInt(this.amountInput?.nativeElement.value, 10);
+  onAddItem() {
+    const name = this.nameInputRef?.nativeElement.value;
+    const amount = parseInt(this.amountInputRef?.nativeElement.value, 10);
 
     if (name.trim() && amount > 0) {
       this.newIngredient.emit({ name, amount });
-      // this.nameInput.nativeElement.value = '';
-      // this.amountInput.nativeElement.value = '';
     }
   }
 
-  ngOnInit() {
-    console.log(this.nameInput?.nativeElement.value);
-  }
+  ngOnInit() {}
 }
